@@ -1,0 +1,24 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: function-template-go
+spec:
+  compositeTypeRef:
+    apiVersion: example.crossplane.io/v1
+    kind: XR
+  mode: Pipeline
+  pipeline:
+  - step: run-the-template
+    functionRef:
+      name: function-step-one
+    input:
+      apiVersion: template.fn.crossplane.io/v1beta1
+      kind: One
+      example: "Hello world"
+  - step: run-the-template-2
+    functionRef:
+      name: function-step-two
+    input:
+      apiVersion: template.fn.crossplane.io/v1beta1
+      kind: Two
+      example: "Hello world"
